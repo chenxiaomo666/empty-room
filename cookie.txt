@@ -1,0 +1,2 @@
+#LWP-Cookies-2.0
+Set-Cookie3: JSESSIONID=21C448CB6EA3F09FDF9BCBBC243DC73F; path="/jwglxt"; domain="jwxt.neuq.edu.cn"; path_spec; discard; HttpOnly=None; version=0

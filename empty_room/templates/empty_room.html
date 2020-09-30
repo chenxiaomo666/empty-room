@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>空教室</title>
+</head>
+<body>
+    <h1>{{ time }}  星期{{ weekday }}</h1>
+    <p></p>
+    <p></p>
+    {% if is_first %}
+    <h2>您是今天第一位到访者，您的点击为后面的同学提供了数据，感谢您！</h2>
+    {% else %}
+    <h2>您是今天第{{ frequency }}位到访者，祝您学习愉快！</h2>
+    {% endif %}
+    <p></p>
+    <p></p>
+
+    <h2>距离考研还有{{ countdown }}天！加油！</h2>
+    <p></p>
+    <p></p>
+    
+    <p></p>
+    <p></p>
+    <h2>全天都空闲</h2>
+    <h3>{{all}}</h3>
+    <p></p>
+    <p></p>
+
+    <h2>一上午空闲</h2>
+    <h3>{{morning}}</h3>
+    <p></p>
+    <p></p>
+
+    <h2>一下午空闲</h2>
+    <h3>{{afternoon}}</h3>
+    <p></p>
+    <p></p>
+
+    <h2>一晚上空闲</h2>
+    <h3>{{evening}}</h3>
+    <p></p>
+    <p></p>
+
+    <h4>数据来源于教务处 copyright帅气的陈小陌</h4>
+    
+</body>
+</html>
