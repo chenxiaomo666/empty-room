@@ -34,28 +34,43 @@ def empty_room():
             morning = room.morning
             afternoon = room.afternoon
             evening = room.evening
+            one_two = room.one_two
+            three_four = room.three_four
+            five_six = room.five_six
+            seven_eight = room.seven_eight
+            nine_ten = room.nine_ten
         else:
             is_first = True
             frequency = 1
             login()
-            all, morning, afternoon, evening = get_empty_class_room()
+            all, morning, afternoon, evening, one_two, three_four, five_six, seven_eight, nine_ten = get_empty_class_room()
             room.time = now_time
             room.all = all
             room.morning = morning
             room.afternoon = afternoon
             room.evening = evening
             room.frequency = frequency
+            room.one_two = one_two
+            room.three_four = three_four
+            room.five_six = five_six
+            room.seven_eight = seven_eight
+            room.nine_ten = nine_ten
     else:
         is_first = True
         frequency = 1
         login()
-        all, morning, afternoon, evening = get_empty_class_room()
+        all, morning, afternoon, evening, one_two, three_four, five_six, seven_eight, nine_ten = get_empty_class_room()
         room = Room()
         room.time = now_time
         room.all = all
         room.morning = morning
         room.afternoon = afternoon
         room.evening = evening
+        room.one_two = one_two
+        room.three_four = three_four
+        room.five_six = five_six
+        room.seven_eight = seven_eight
+        room.nine_ten = nine_ten
         room.author = "cxm"
         room.frequency = 1
         db.session.add(room)
@@ -67,4 +82,5 @@ def empty_room():
 
     return render_template("empty_room.html", time=str(now_time)[:10], 
     weekday=weekday, all=all, morning=morning, afternoon=afternoon, evening=evening,
-     is_first=is_first, frequency=frequency, countdown=countdown)
+     is_first=is_first, frequency=frequency, countdown=countdown,
+     one_two = one_two, three_four = three_four, five_six = five_six, seven_eight = seven_eight, nine_ten = nine_ten)

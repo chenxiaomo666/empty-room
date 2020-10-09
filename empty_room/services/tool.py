@@ -131,7 +131,9 @@ def get_current_week():
         now_yearday = sum(month_year[0:now_month]) + now_day
         result_week = (last_yearday + now_yearday) // 7 + 1
 
-    return result_week, now_time.weekday()+1
+    # 国庆放了一周假。。。  update 2020/10/15 23:24
+    # return result_week, now_time.weekday()+1
+    return (result_week-1)**2, now_time.weekday()+1
 
 
 def jwc_post(week, weekday, period):
@@ -172,11 +174,21 @@ def get_empty_class_room():
     empty_room_morning = jwc_post(week, weekday, 15)
     empty_room_afternoon = jwc_post(week, weekday, 240)
     empty_room_evening = jwc_post(week, weekday, 768)
+    empty_room_one_two = jwc_post(week, weekday, 3)  # 一二节课
+    empty_room_three_four = jwc_post(week, weekday, 12)  # 三四节课
+    empty_room_five_six = jwc_post(week, weekday, 48) # 五六节课
+    empty_room_seven_eight = jwc_post(week, weekday, 192)  # 四八节课
+    empty_room_nine_ten = jwc_post(week, weekday, 768)  # 九十节课
 
     all = []
     morning = []
     afternoon = []
     evening = []
+    one_two = []
+    three_four = []
+    five_six = []
+    seven_eight = []
+    nine_ten = []
 
     for x in empty_room_all["items"]:
         all.append(x["cdbh"])
@@ -186,11 +198,26 @@ def get_empty_class_room():
         afternoon.append(x["cdbh"])
     for x in empty_room_evening["items"]:
         evening.append(x["cdbh"])
+    for x in empty_room_one_two["items"]:
+        one_two.append(x["cdbh"])
+    for x in empty_room_three_four["items"]:
+        three_four.append(x["cdbh"])
+    for x in empty_room_five_six["items"]:
+        five_six.append(x["cdbh"])
+    for x in empty_room_seven_eight["items"]:
+        seven_eight.append(x["cdbh"])
+    for x in empty_room_nine_ten["items"]:
+        nine_ten.append(x["cdbh"])
 
     all_ = ", ".join(all)
     morning_ = ", ".join(morning)
     afternoon_ = ", ".join(afternoon)
     evening_ = ", ".join(evening)
+    one_two_ = ", ".join(one_two)
+    three_four_ = ", ".join(three_four)
+    five_six_ = ", ".join(five_six)
+    seven_eight_ = ", ".join(seven_eight)
+    nine_ten_ = ", ".join(nine_ten)
 
-    return all_, morning_, afternoon_, evening_
+    return all_, morning_, afternoon_, evening_, one_two_, three_four_, five_six_, seven_eight_, nine_ten_
 
