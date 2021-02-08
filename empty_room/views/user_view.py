@@ -19,11 +19,13 @@ def empty_room():
     is_first = False
     frequency = 0
 
-    kaoyan_time = datetime(2020, 12, 26)
+    kaoyan_time = datetime(2021, 12, 25)    # 21年考研日期，婷婷
     now_time = datetime.now()
     countdown = (kaoyan_time - now_time).days + 1
     # now_time = datetime(2020, 9, 13)
-    room = base_query(Room).filter_by(author="cxm").first()
+    # room = base_query(Room).filter_by(author="cxm").first()
+    room = base_query(Room).order_by(Room.id.desc()).first()
+    
     if room is not None:
         time = room.time
         frequency = room.frequency + 1
@@ -41,6 +43,7 @@ def empty_room():
             nine_ten = room.nine_ten
         else:
             is_first = True
+            room = Room()    # 每天的数据都保留着
             frequency = 1
             login()
             all, morning, afternoon, evening, one_two, three_four, five_six, seven_eight, nine_ten = get_empty_class_room()
@@ -55,6 +58,7 @@ def empty_room():
             room.five_six = five_six
             room.seven_eight = seven_eight
             room.nine_ten = nine_ten
+            db.session.add(room)
     else:
         is_first = True
         frequency = 1

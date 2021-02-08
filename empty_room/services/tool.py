@@ -133,7 +133,8 @@ def get_current_week():
 
     # 国庆放了一周假。。。  update 2020/10/15 23:24
     # return result_week, now_time.weekday()+1
-    return (result_week-1)**2, now_time.weekday()+1
+    # return (result_week-1)**2, now_time.weekday()+1
+    return 2**(result_week-1), now_time.weekday()+1
 
 
 def jwc_post(week, weekday, period):
