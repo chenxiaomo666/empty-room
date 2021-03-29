@@ -19,7 +19,7 @@ def empty_room():
     is_first = False
     frequency = 0
 
-    kaoyan_time = datetime(2021, 12, 25)    # 21年考研日期，婷婷
+    kaoyan_time = datetime(Config.KAOYAN_TIME[0], Config.KAOYAN_TIME[1], Config.KAOYAN_TIME[2])    # 21年考研日期，婷婷
     now_time = datetime.now()
     countdown = (kaoyan_time - now_time).days + 1
     # now_time = datetime(2020, 9, 13)

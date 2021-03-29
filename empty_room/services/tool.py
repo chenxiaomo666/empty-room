@@ -4,6 +4,7 @@ import base64
 import json
 import rsa
 from bs4 import BeautifulSoup as bs
+from ..config import Config
 
 try:
     import cookielib
@@ -61,7 +62,7 @@ def login():
 
 # 提交登录表单，并利用cookiejar保存cookie
 def parse():
-    username = "20178666"
+    username = Config.STUDENTID
     payload = {
         'csrftoken': get_csrf_token(),
         'yhm': username,
@@ -93,7 +94,7 @@ def get_csrf_token():
 
 # 从公钥接口获取到构造公钥的模和指数，并在本地生成公钥对明文密码加密。
 def get_passwd():
-    mm = bytes("ch1315203091", encoding='utf-8')
+    mm = bytes(Config.PASSWORD, encoding='utf-8')
     publickey = session.get('http://jwxt.neuq.edu.cn/jwglxt/xtgl/login_getPublicKey.html').json()
     b_modulus = base64.b64decode(publickey['modulus'])  # 将base64解码转为bytes
     b_exponent = base64.b64decode(publickey['exponent'])  # 将base64解码转为bytes
@@ -109,7 +110,7 @@ def get_passwd():
 def get_current_week():
     from datetime import datetime
     # 开学时间，手动维护
-    start_year, start_month, start_day = 2020, 9, 7
+    start_year, start_month, start_day = Config.START_TIME
 
     now_time = datetime.now()
     now_year, now_month, now_day = now_time.year, now_time.month, now_time.day
@@ -131,9 +132,6 @@ def get_current_week():
         now_yearday = sum(month_year[0:now_month]) + now_day
         result_week = (last_yearday + now_yearday) // 7 + 1
 
-    # 国庆放了一周假。。。  update 2020/10/15 23:24
-    # return result_week, now_time.weekday()+1
-    # return (result_week-1)**2, now_time.weekday()+1
     return 2**(result_week-1), now_time.weekday()+1
 
 
